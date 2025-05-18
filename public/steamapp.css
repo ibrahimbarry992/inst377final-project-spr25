@@ -1,0 +1,117 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1b2838;
+    color: #c7d5e0;
+  }
+  
+
+  nav {
+    background-color: #171a21;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    color: #66c0f4;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #c7d5e0;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+  }
+  
+ nav a:hover {
+    background-color: #2a475e;
+    color: #ffffff;
+  }
+  
+
+  .container {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  
+  .btn {
+    background-color: #66c0f4;
+    color: #1b2838;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #417a9b;
+    color: #fff;
+  }
+  
+  body {
+  background-color: #111e2d;
+  color: #cde1f1;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-container img {
+  margin: 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+  justify-content: center;
+}
+
+.slider-container img:hover {
+  transform: scale(1.05);
+}
+
+.about-container {
+  width: 80%; 
+  min-height: 200px; 
+  height: auto;
+  background-color: #2e3d5e; 
+  border: 3px solid #ccc; 
+  padding: 20px; 
+  margin-left: 9%;
+  margin-top: 10%;
+  margin-right: 8%;
+  text-align: center; 
+}
+
+#aboutSiteInfo {
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}

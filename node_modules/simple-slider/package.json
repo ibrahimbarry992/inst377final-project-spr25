@@ -1,0 +1,75 @@
+{
+  "name": "simple-slider",
+  "version": "1.0.0",
+  "description": "The 1kb JavaScript Carousel",
+  "homepage": "http://ruyadorno.github.io/simple-slider/",
+  "main": "dist/simpleslider.js",
+  "files": [
+    "src/simpleslider.js",
+    "dist/simpleslider.js",
+    "dist/simpleslider.min.js"
+  ],
+  "scripts": {
+    "build:transpile": "node scripts/transpile.js",
+    "build:minify": "uglifyjs --compress --mangle --screw-ie8 dist/simpleslider.js -o dist/simpleslider.min.js",
+    "build": "run-s build:transpile build:minify",
+    "test:lint": "eslint src/ test/",
+    "test:build": "webpack",
+    "test:unit": "jest",
+    "test": "run-s test:lint test:build test:unit",
+    "functional": "zuul -- test/functional-tests.js",
+    "functional:local": "zuul --local 8080 -- test/functional-tests.js",
+    "ci": "run-s test build functional"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-conditional-compilation": "=0.0.1",
+    "babel-plugin-remove-comments": "^2.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.23.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-es2017": "^6.22.0",
+    "eslint": "^3.16.1",
+    "eslint-config-xo": "^0.18.0",
+    "jest": "^19.0.2",
+    "npm-run-all": "^4.0.2",
+    "raf": "^3.3.0",
+    "uglify-js": "^2.8.10",
+    "webpack": "^2.2.1",
+    "zuul": "^3.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruyadorno/simple-slider.git"
+  },
+  "keywords": [
+    "simple",
+    "carousel",
+    "slider",
+    "gallery",
+    "slideshow",
+    "lightweight",
+    "minimalistic",
+    "micro",
+    "slick",
+    "lory",
+    "siema",
+    "swipe",
+    "swiper",
+    "flickity",
+    "islider",
+    "owlcarousel",
+    "unslider",
+    "glide",
+    "glidejs",
+    "javascript-carousel",
+    "DOM",
+    "browser"
+  ],
+  "jest": {
+    "verbose": true
+  },
+  "author": "Ruy Adorno",
+  "license": "MIT"
+}
