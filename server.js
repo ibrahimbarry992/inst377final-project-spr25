@@ -2,15 +2,14 @@ const path = require('path');
 const supabaseClient = require('@supabase/supabase-js');
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
 
 const app = express();
-const PORT = 3000;
+
 
 //Middleware
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'templates'));
@@ -22,49 +21,51 @@ const supabase = supabaseClient.createClient(supabaseURL, supabaseKey);
 
 //Routes to different pages
 app.get('/', (req, res) => {
-    res.render('steamapp');
+  res.render('steamapp');
 });
 app.get('/about', (req, res) => {
-    res.render('about');
+  res.render('about');
 });
 app.get('/games', (req, res) => {
-    res.render('games');
+  res.render('games');
 });
 
 //API - Attempts to get profiles from Supabase
-app.get('/profile', async (req, res) => {
-    console.log('Attempting to GET all profile usernames')
+app.get('/api/profile', async (req, res) => {
+ 
+  const { data, error } = await supabase.from('profile').select('*');
 
-    const { data, error } = await supabase.from('profile').select('*');
+  if (error) {
+    console.error(`Error: ${error}`); 
+    return res.status(500).send(error); 
+  }
 
-    if(error) {
-        console.log(`Error: ${error}`);
-        res.send(error);
-    }
-
-    res.send(data)
-})
+  res.status(200).json(data);
+});
 
 //API - Attempts to add new profile
-app.post('/profile', async (req, res) => {
-    console.log('Adding profile...')
+app.post('/api/profile', async (req, res) => {
+ 
+  const profileUser = req.body.profileUser;
 
-    console.log(req.body);
-    const profileUser = req.body.profileUser;
-
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from('profile')
     .insert({ profile: profileUser })
     .select();
 
-    if(error) {
-        console.log(`Error: ${error}`);
-        res.send(error);
-    }
+  if (error) {
+    console.error(`Error: ${error}`); 
+    return res.status(500).send(error); 
+  }
 
-    res.send(data);
-})
-
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  res.status(201).json(data); 
 });
+
+module.exports = async (req, res) => {
+  try {
+    app(req, res);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
